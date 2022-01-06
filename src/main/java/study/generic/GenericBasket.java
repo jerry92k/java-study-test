@@ -1,4 +1,4 @@
-package study.polymorphism;
+package study.generic;
 
 public class GenericBasket<T>{
     private T item;

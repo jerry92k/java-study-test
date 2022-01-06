@@ -1,9 +1,8 @@
-package study.polymorphism;
+package study.generic;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import study.inheritance.Child;
 import study.inheritance.Parent;

@@ -1,10 +1,8 @@
-package study;
+package study.inheritance;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-import study.inheritance.Child;
-import study.inheritance.Parent;
 
 public class InheritanceTest {
 
