@@ -1,4 +1,4 @@
-package study.array;
+package study;
 
 import java.util.Random;
 
