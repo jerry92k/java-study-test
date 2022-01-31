@@ -6,7 +6,6 @@ public class RandomArray {
 
 	private static Random random = new Random();
 	public static String[] makeStrs(int strLen, int arraySize){
-
 		String[] strs= new String[arraySize];
 		for(int i=0; i<arraySize; i++){
 			strs[i] =makeWord(strLen);
