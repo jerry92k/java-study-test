@@ -69,4 +69,38 @@ class FruitBagTest {
 		Object[] objects = new Long[1]; // 공변성으로 Long -> Object 상속하니 Long[] -> Object[] 상속도 성립하게되어 컴파일 오류 안남.
 		assertThatThrownBy(()->objects[0] = "런타임에 오류난다.").isInstanceOf(ArrayStoreException.class);
 	}
+
+	@Test
+	void 제네릭_리스트와_가변인수로_받아서_Object배열로_참조하면_런타임_오류에_취약하다(){
+		List<Fruit> fruits1 = Arrays.asList(new Fruit("과일1"), new Apple("금사과"), new Banana("몽키바나나"));
+		List<Fruit> fruits2 = Arrays.asList(new Fruit("과일2"), new Apple("금사과2"), new Banana("몽키바나나2"));
+		List<Fruit> fruits3 = Arrays.asList(new Fruit("과일3"), new Apple("금사과3"), new Banana("몽키바나나3"));
+
+		FruitBag<Fruit> appleFruitBag = new FruitBag<>(new Apple("풋사과"));
+
+		assertThatThrownBy(()->appleFruitBag.addFruitListFail(fruits1,fruits2,fruits3)).isInstanceOf(ArrayStoreException.class);
+		/*
+		public void addFruitListFail(List<? extends T>... fruits){
+		Object[] objects = fruits;
+		objects[0]="런타임 오류 발생";
+		 */
+	}
+
+	@Test
+	void 제네릭_리스트와_가변인수로_사용할땐_타입을_명시해주면_된다(){
+		List<Fruit> fruits1 = Arrays.asList(new Fruit("과일1"), new Apple("금사과"), new Banana("몽키바나나"));
+		List<Fruit> fruits2 = Arrays.asList(new Fruit("과일2"), new Apple("금사과2"), new Banana("몽키바나나2"));
+		List<Fruit> fruits3 = Arrays.asList(new Fruit("과일3"), new Apple("금사과3"), new Banana("몽키바나나3"));
+
+		FruitBag<Fruit> appleFruitBag = new FruitBag<>(new Apple("풋사과"));
+		appleFruitBag.addFruitListSuccess(fruits1,fruits2,fruits3);
+		assertThat(appleFruitBag.getFruitList().size()).isEqualTo(fruits1.size()+fruits2.size()+fruits3.size());
+		/*
+		public void addFruitListSuccess(List<? extends T>... fruits){
+		for(List<? extends T> list : fruits){
+			fruitList.addAll(list);
+		}
+		 */
+	}
+
 }

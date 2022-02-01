@@ -32,4 +32,15 @@ public class FruitBag<T> {
 	public List<T> getFruitList() {
 		return fruitList;
 	}
+
+	public void addFruitListFail(List<? extends T>... fruits){
+		Object[] objects = fruits;
+		objects[0]="런타임 오류 발생";
+	}
+
+	public void addFruitListSuccess(List<? extends T>... fruits){
+		for(List<? extends T> list : fruits){
+			fruitList.addAll(list);
+		}
+	}
 }
