@@ -9,7 +9,7 @@ public class ClientMain {
 		try {
 			socketClient.connect();
 			socketClient.send();
-			socketClient.receive();
+			// socketClient.receive();
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
